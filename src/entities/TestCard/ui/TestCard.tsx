@@ -10,7 +10,7 @@ const TestCard = ({ test }: ITestCardProps) => {
       hoverable
       onClick={() => navigate(`/test/${test.id}`)}
     >
-      <Typography.Text>{test.description}</Typography.Text>
+      <Typography.Text>{test.descr}</Typography.Text>
     </Card>
   );
 };

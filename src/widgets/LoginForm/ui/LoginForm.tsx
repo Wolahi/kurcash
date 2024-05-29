@@ -11,10 +11,8 @@ const LoginForm = () => {
   const { login } = useAuth();
 
   const onSubmit = async (data: any) => {
-    const req = await $api.post("api/v1/login", {
-      data,
-    });
-    login(req.data.token);
+    const req = await $api.post("/auth/login", data);
+    login(req.data.tokenOutput.access);
     navigate("/");
   };
 
@@ -24,7 +22,7 @@ const LoginForm = () => {
       <LoginFormWrapper onSubmit={handleSubmit(onSubmit)}>
         <Controller
           control={control}
-          name={"email"}
+          name={"username"}
           render={({ field: { value, onChange } }) => (
             <Input value={value} onChange={onChange} placeholder={"Почта"} />
           )}

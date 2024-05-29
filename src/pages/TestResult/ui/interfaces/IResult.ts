@@ -1,4 +1,4 @@
 export interface IResult {
-  result: string;
-  recommendation: string;
+  title: string;
+  description: string;
 }

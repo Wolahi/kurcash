@@ -13,6 +13,7 @@ export const TestFormContainer = styled.div`
 export const TestFormWrapper = styled.form`
   display: grid;
   grid-template-columns: auto 400px;
+  min-height: 400px;
   gap: 8px;
 `;
 

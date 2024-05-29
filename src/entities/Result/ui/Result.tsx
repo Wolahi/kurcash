@@ -13,12 +13,8 @@ const Result = () => {
 
   useEffect(() => {
     (async () => {
-      const req = await $api.post("/api/v1/disease/1", {
-        data: {
-          ...state,
-        },
-      });
-      setResult(req.data as IResult);
+      const req = await $api.post("/anketa/result", state);
+      setResult(req.data.value as IResult);
     })();
   }, [state]);
 
@@ -27,8 +23,8 @@ const Result = () => {
       <Typography.Title level={3}>Результат</Typography.Title>
       {result ? (
         <ResultWrapper>
-          <Typography.Title level={2}>{result?.result}</Typography.Title>
-          <Typography>{result?.recommendation}</Typography>{" "}
+          <Typography.Title>{result?.title}</Typography.Title>
+          <Typography>{result?.description}</Typography>{" "}
         </ResultWrapper>
       ) : (
         <Spin />

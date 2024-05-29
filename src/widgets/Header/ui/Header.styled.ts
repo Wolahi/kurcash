@@ -8,7 +8,7 @@ export const HeaderContainer = styled.header`
   height: 73px;
   display: flex;
   align-items: center;
-  background-color: #31bd7b;
+  background-color:#1677ff ;
   justify-content: space-between;
 `;
 
