@@ -1,4 +1,4 @@
-import { Button, Input, Radio, Typography } from "antd";
+import { Button, Input, Typography } from "antd";
 import { RegFormContainer, RegFormWrapper } from "./RegForm.styled.ts";
 import { useNavigate } from "react-router";
 import { Controller, useForm } from "react-hook-form";
@@ -9,12 +9,7 @@ const RegForm = () => {
   const { control, handleSubmit } = useForm();
 
   const onSubmit = (data: any) => {
-    $api.post("api/v1/register", {
-      data: {
-        ...data,
-        age: Number(data.age),
-      },
-    });
+    $api.post("user/register", data);
     navigate("/login");
   };
 
@@ -24,36 +19,19 @@ const RegForm = () => {
       <RegFormWrapper onSubmit={handleSubmit(onSubmit)}>
         <Controller
           control={control}
-          name={"email"}
-          render={({ field: { value, onChange } }) => (
-            <Input value={value} onChange={onChange} placeholder={"Почта"} />
-          )}
-        />
-        <Controller
-          control={control}
-          name={"first_name"}
+          name={"username"}
           render={({ field }) => <Input {...field} placeholder={"Имя"} />}
         />
         <Controller
           control={control}
-          name={"last_name"}
-          render={({ field }) => <Input {...field} placeholder={"Фамилия"} />}
+          name={"phone"}
+          render={({ field }) => <Input {...field} placeholder={"Телефон"} />}
         />
         <Controller
           control={control}
-          name={"age"}
-          render={({ field }) => (
-            <Input {...field} type="number" placeholder={"Возраст"} />
-          )}
-        />
-        <Controller
-          control={control}
-          name={"sex"}
-          render={({ field }) => (
-            <Radio.Group {...field}>
-              <Radio value={"women"}>Женщина</Radio>
-              <Radio value={"men"}>Мужчина</Radio>
-            </Radio.Group>
+          name={"email"}
+          render={({ field: { value, onChange } }) => (
+            <Input value={value} onChange={onChange} placeholder={"Почта"} />
           )}
         />
         <Controller

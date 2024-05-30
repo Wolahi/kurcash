@@ -1,10 +1,7 @@
-import { ETypeQuestions } from "./ETypeQuestions.ts";
-import { IVariants } from "./IVariants.ts";
+import { IAnswer } from "./IAnswer.ts";
 
 export interface IQuestions {
-  type: ETypeQuestions;
-  variants: IVariants[];
-  nameVal: string;
-  title: string;
-  label: string;
+  id: number;
+  question: string;
+  answers: IAnswer[];
 }

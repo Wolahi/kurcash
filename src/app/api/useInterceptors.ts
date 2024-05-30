@@ -1,11 +1,8 @@
-import { useMemo } from "react";
 import { $api } from "./api.ts";
+import useAuth from "../module/useAuth.ts";
 
 const useInterceptors = () => {
-  const token = useMemo(
-    () => String(localStorage.getItem("token")),
-    [localStorage],
-  );
+  const { token } = useAuth();
 
   $api.interceptors.request.use(function (config): any {
     if (token) {
@@ -13,7 +10,7 @@ const useInterceptors = () => {
         ...config,
         headers: {
           ...config.headers,
-          Authorization: String(token),
+          Authorization: `Bearer ${String(token)}`,
         },
       };
     }
