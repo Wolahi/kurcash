@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 
 const useAuth = (): {
   login: (authToken: string) => void;
   logout: () => void;
   isAuth: boolean;
-  token: string;
+  token: string | null;
 } => {
   const [isAuth, setIsAuth] = useState(false);
-  const [token, setToken] = useState<string>("");
+  const [token, setToken] = useState<string | null>(null);
+  const location = useLocation();
 
   const login = (authToken: string) => {
     localStorage.setItem("token", authToken);
@@ -17,6 +19,7 @@ const useAuth = (): {
 
   const logout = () => {
     localStorage.removeItem("token");
+    setToken(null);
     setIsAuth(false);
   };
 
@@ -25,7 +28,7 @@ const useAuth = (): {
       setIsAuth(true);
       setToken(String(localStorage.getItem("token")));
     }
-  }, []);
+  }, [location.pathname]);
 
   return {
     isAuth,

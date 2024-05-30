@@ -1,11 +1,11 @@
 import { HeaderContainer, HeaderTitle } from "./Header.styled.ts";
 import { Button } from "antd";
 import { useNavigate } from "react-router";
-import useAuth from "../../../app/module/useAuth.ts";
+import { useAuthContext } from "../../../app/context/useAuthContext.ts";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { isAuth, logout } = useAuth();
+  const { isAuth, logout } = useAuthContext();
   return (
     <HeaderContainer>
       <HeaderTitle>Главная</HeaderTitle>

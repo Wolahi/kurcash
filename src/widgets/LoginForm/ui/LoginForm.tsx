@@ -3,17 +3,19 @@ import { Button, Input, Typography } from "antd";
 import { useNavigate } from "react-router";
 import { Controller, useForm } from "react-hook-form";
 import { $api } from "../../../app/api/api.ts";
-import useAuth from "../../../app/module/useAuth.ts";
+import { useAuthContext } from "../../../app/context/useAuthContext.ts";
 
 const LoginForm = () => {
   const navigate = useNavigate();
   const { control, handleSubmit } = useForm();
-  const { login } = useAuth();
+  const { login } = useAuthContext();
 
   const onSubmit = async (data: any) => {
     const req = await $api.post("/auth/login", data);
-    login(req.data.tokenOutput.access);
-    navigate("/");
+    if (login) {
+      login(req.data.tokenOutput.access);
+      navigate("/");
+    }
   };
 
   return (
